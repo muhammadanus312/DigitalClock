@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <div id="container">
+        <div id="clock">
+
+            <div id="hr" class="box"></div> <b class="bg">:</b>
+            <div id="min" class="box"></div> <b class="bg">:</b>
+            <div id="sec" class="box"></div>
+            <!-- <div id="msec" class="box"></div> -->
+            <div id="mode" class="box"></div>
+        </div>
+        <div id="date">
+            abc
+        </div>
+
+    </div>
+
+    <script>
+        function updatetime() {
+
+            var dt = new Date();
+            // console.log(dt);
+            var hours = dt.getHours();
+            var mod
+            if (hours > 12) {
+                mod = 'PM';
+            }
+            else {
+                mod = 'AM';
+            }
+            if (hours > 12) {
+                hours = Math.abs(hours - 12)
+            }
+            var mins = dt.getMinutes();
+            var secs = dt.getSeconds();
+            // var msec=dt.getMilliseconds();
+            if (hours < 10) {
+                hours = '0' + hours
+            }
+            if (mins < 10) {
+                mins = '0' + mins
+            }
+            if (secs < 10) {
+                secs = '0' + secs
+            }
+
+            document.getElementById('hr').innerHTML = hours;
+
+            document.getElementById('min').innerHTML = mins;
+
+            document.getElementById('sec').innerHTML = secs;
+
+            document.getElementById('mode').innerHTML = mod;
+
+            // document.getElementById('msec').innerHTML=msec;
+        }
+        setInterval(updatetime, 1);
+
+        let dt = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        let fulldate = dt.toLocaleDateString('USA', options);
+        console.log(fulldate);
+        document.getElementById('date').innerHTML = fulldate;
+
+
+
+    </script>
+</body>
+
+</html>
